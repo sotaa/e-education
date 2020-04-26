@@ -1,0 +1,159 @@
+<div class="container">
+  <div class="row justify-content-center mb-3">
+    <div class="col-lg-6 text-center">
+      <button
+        type="button"
+        [ngClass]="{
+          'btn-light text-primary': participantsFlag,
+          'btn-link text-muted': !participantsFlag
+        }"
+        class="btn text-decoration-none btn-sm border-0 font-weight-bold"
+        (click)="showParticipants()"
+      >
+        نمایش جزئیات شرکت کننده ها
+      </button>
+      <button
+        type="button"
+        [ngClass]="{
+          'btn-light text-primary': schedulesFlag,
+          'btn-link text-muted': !schedulesFlag
+        }"
+        class="btn btn-link text-decoration-none btn-sm border-0 font-weight-bold"
+        (click)="showSchedules()"
+      >
+        نمایش جزئیات جلسات کلاس
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div *ngIf="schedulesFlag" class="col-lg-9">
+      <div class="row">
+        <div class="col">
+          <div class="md-form">
+            <div class="row justify-content-end">
+              <div class="col-lg-6">
+                <input
+                  type="text"
+                  class="form-control text-right mx-auto mt-3 mb-3 pr-2 w-50"
+                  placeholder="... فیلتر"
+                  (keyup)="updateSchedulesFilter($event)"
+                />
+              </div>
+              <div class="col-lg-3 align-self-end">
+                <p
+                  class="text-right font-weight-bold pr-1"
+                  style="font-size: 12px;"
+                >
+                  {{ details.title }}
+                </p>
+              </div>
+            </div>
+            <ngx-datatable
+              #table
+              class="material"
+              [headerHeight]="50"
+              [columnMode]="ColumnMode.force"
+              [columns]="columns"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="10"
+              [rows]="rows"
+              [scrollbarH]="false"
+            >
+              <ngx-datatable-column
+                [sortable]="true"
+                [resizeable]="false"
+                name="تاریخ"
+                prop="title"
+              >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div class="text-right">{{ row.date }}</div>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column
+                [sortable]="true"
+                [resizeable]="false"
+                name="زمان"
+                prop="title"
+              >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div class="text-right">{{ row.time }}</div>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column
+                [sortable]="true"
+                [resizeable]="false"
+                name="مدت"
+                prop="title"
+              >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div class="text-right">{{ row.period }} ساعت</div>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="participantsFlag" class="col-lg-9">
+      <div class="row">
+        <div class="col">
+          <div class="md-form">
+            <div class="row justify-content-end">
+              <div class="col-lg-6">
+                <input
+                  type="text"
+                  class="form-control text-right mx-auto mt-3 mb-3 pr-2 w-50"
+                  placeholder="... فیلتر"
+                  (keyup)="updateParticipantsFilter($event)"
+                />
+              </div>
+              <div class="col-lg-3 align-self-end">
+                <p
+                  class="text-right font-weight-bold pr-1"
+                  style="font-size: 12px;"
+                >
+                  {{ details.title }}
+                </p>
+              </div>
+            </div>
+            <ngx-datatable
+              #table
+              class="material"
+              [headerHeight]="50"
+              [columnMode]="ColumnMode.force"
+              [columns]="columns"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="10"
+              [rows]="rows"
+              [scrollbarH]="false"
+            >
+              <ngx-datatable-column
+                [sortable]="true"
+                [resizeable]="false"
+                name="موبایل"
+                prop="mobile"
+              >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div class="text-right">{{ row.mobile }}</div>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column
+                [sortable]="true"
+                [resizeable]="false"
+                name="نام"
+                prop="name"
+              >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div class="text-right">{{ row.name }}</div>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+
+.datatable-header-cell {
+  display: flex !important;
+  align-items: right !important;
+  font-weight: bold;
+}
+
+.material {
+  direction: rtl;
+  text-align: right;
+  font-weight: bold;
+}

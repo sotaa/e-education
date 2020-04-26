@@ -1,0 +1,216 @@
+<p class="text-center h5 mb-4 font-weight-bold">ثبت کلاس</p>
+<form
+  *ngIf="scheduleFlag"
+  (submit)="scheduleSubmit()"
+  #f="ngForm"
+  class="text-center border border-light pt-3 pb-5 px-5"
+>
+  <p class="text-right formTitle mb-4">اطلاعات کلاس</p>
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col">
+        <div class="md-form">
+          <input
+            type="text"
+            id="title"
+            class="form-control text-right px-3"
+            placeholder="عنوان کلاس"
+            [(ngModel)]="title"
+            name="title"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <p *ngIf="errorMessage" class="text-danger text-center">
+      {{ errorMessage }}
+    </p>
+    <section
+      class="border mt-2 mb-4 px-3 pt-1 pb-0"
+      *ngFor="let schedule of schedules; let i = index"
+    >
+      <div class="row pb-0">
+        <div class="col-6 mt-0 text-left">
+          <i
+            type="button"
+            class="fas fa-times text-danger"
+            (click)="removeSchedule(i)"
+          ></i>
+        </div>
+        <div class="col-6 mt-0 text-right">
+          <small>جلسه {{ i + 1 }} </small>
+        </div>
+      </div>
+
+      <div class="form-row mb-0 mt-3">
+        <div class="col">
+          <div class="md-form">
+            <dp-date-picker
+              dir="rtl"
+              mode="day"
+              placeholder="تاریخ شروع کلاس"
+              name="date_{{ schedule.id }}"
+              theme="dp-material"
+              [(ngModel)]="schedule.date"
+              required
+            >
+            </dp-date-picker>
+          </div>
+        </div>
+        <div class="col">
+          <div class="md-form ml-5 time-p">
+            <input
+              type="time"
+              id="time"
+              class="form-control text-right"
+              [(ngModel)]="schedule.time"
+              name="time_{{ schedule.id }}"
+              placeholder=" ساعت شروع کلاس"
+            />
+            <label for="time">ساعت شروع</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group ml-5 period-p">
+            <label class="text-muted" for="items">مدت زمان کلاس</label>
+            <select
+              class="form-control form-control-sm select"
+              [(ngModel)]="schedule.period"
+              name="period_{{ schedule.id }}"
+              id="items"
+            >
+              <option *ngFor="let item of items">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="row d-flex justify-content-center">
+      <i
+        class="fas fa-plus text-default"
+        style="font-size: x-large; cursor: pointer;"
+        (click)="addSchedules()"
+      ></i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col d-flex justify-content-end">
+      <button
+        class="btn btn-success btn-block py-1 my-5 border-0"
+        type="submit"
+      >
+        ذخیره
+      </button>
+    </div>
+  </div>
+</form>
+
+<form
+  *ngIf="participantFlag"
+  (submit)="participantSubmit()"
+  #f="ngForm"
+  class="text-center border border-light pt-3 pb-5 px-5"
+>
+  <p class="text-right formTitle mb-4">اطلاعات شرکت کننده ها</p>
+  <div class="container mb-5">
+    <p *ngIf="errorMessage" class="text-danger text-center">
+      {{ errorMessage }}
+    </p>
+    <section
+      class="border mt-2 mb-4 px-3 pt-1 pb-0"
+      *ngFor="let participant of participants; let i = index"
+    >
+      <div class="row pb-0">
+        <div class="col-6 mt-0 text-left">
+          <i
+            type="button"
+            class="fas fa-times text-danger"
+            (click)="removeParticipant(i)"
+          ></i>
+        </div>
+        <div class="col-6 mt-0 text-right">
+          <small>شرکت کننده {{ i + 1 }} </small>
+        </div>
+      </div>
+      <div class="form-row mb-0 mt-0">
+        <div class="col mr-3">
+          <div class="md-form name-m">
+            <input
+              type="number"
+              id="mobile"
+              class="form-control px-3"
+              [(ngModel)]="participant.mobile"
+              name="mobile_{{ participant.id }}"
+              placeholder="شماره موبایل"
+              required
+            />
+          </div>
+        </div>
+        <div class="col ml-3">
+          <div class="md-form name-p">
+            <input
+              type="text"
+              id="name"
+              class="form-control px-3"
+              [(ngModel)]="participant.name"
+              name="name_{{ participant.id }}"
+              placeholder="نام (اختیاری)"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="row d-flex justify-content-center">
+      <i
+        class="fas fa-plus mb-2 text-default"
+        style="font-size: x-large; cursor: pointer;"
+        (click)="addParticipants()"
+      ></i>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button
+        class="btn btn-success btn-block py-1 mt-5 border-0"
+        type="submit"
+      >
+        ذخیره
+      </button>
+      <button
+        class="btn btn-light py-1 mt-3 mb-5 border-0"
+        type="button"
+        (click)="participantBack()"
+      >
+        بازگشت
+      </button>
+    </div>
+  </div>
+</form>
+
+<form
+  class="text-center border border-light pt-3 pb-5 px-5"
+  *ngIf="paymentDetailsFlag"
+>
+  <div *ngIf="!isLoading" class="container">
+    <p>
+      هزینه کلاس به ازای مجموعا
+      <strong class="teal-text"> {{ personsCount }} </strong>نفر و
+      <strong class="teal-text">{{ periodsCount }} </strong> ساعت معادل با
+      <strong class="teal-text">{{ this.bill }} </strong>تومان می باشد
+    </p>
+    <div class="row">
+      <div class="col">
+        <button
+          class="btn btn-success px-3 py-1 my-5 border-0"
+          type="button"
+          (click)="goToPay()"
+        >
+          ثبت نهایی و پرداخت
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="isLoading">... در حال محاسبه کلاس در خواست شده</p>
+</form>

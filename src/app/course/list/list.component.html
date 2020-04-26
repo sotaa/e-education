@@ -1,0 +1,88 @@
+<div *ngIf="!isLoading" class="container">
+  <p *ngIf="notExistDataFlag" class="text-center h5 mb-4 font-weight-bold">
+    <span class="text-danger">!هنوز کلاسی ثبت نکرده اید</span>
+    <br />
+    <br />
+    <br />
+    <br />
+    شما میتوانید با کلیک روی ''
+    <a class="text-danger text-decoration-none" [routerLink]="['add']"
+      >ثبت کلاس جدید</a
+    >
+    '' کلاس خود را بسازید
+  </p>
+
+  <div *ngIf="mainTableFlag" class="row">
+    <div class="col">
+      <div class="md-form" style="width: 65%; margin: 0 auto;">
+        <input
+          type="text"
+          class="form-control text-right mx-auto mt-3 mb-3"
+          style="padding: 8px; width: 30%;"
+          placeholder="... فیلتر"
+          (keyup)="updateFilter($event)"
+        />
+        <ngx-datatable
+          #table
+          class="material"
+          [columnMode]="ColumnMode.force"
+          [columns]="columns"
+          style="height: 260px;"
+          [headerHeight]="50"
+          [rowHeight]="50"
+          [footerHeight]="50"
+          [limit]="10"
+          [rows]="rows"
+          [scrollbarH]="false"
+        >
+          <ngx-datatable-column
+            [width]="1000"
+            [sortable]="true"
+            [resizeable]="false"
+            name="عنوان"
+            prop="title"
+          >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div class="text-right">{{ row.title }}</div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column [resizeable]="false" name="نمایش جزئیات">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div class="text-right pt-0">
+                <button
+                  mat-raised-button
+                  class="btn btn-link pl-0 border-0 mt-0 pt-0"
+                  (click)="showInfo(row.id)"
+                >
+                  <i class="fas fa-info-circle text-info"></i>
+                </button>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+
+  <app-details
+    *ngIf="!mainTableFlag && !notExistDataFlag"
+    [details]="details"
+  ></app-details>
+
+  <div *ngIf="!mainTableFlag && !notExistDataFlag" class="row mt-4">
+    <div class="col text-center">
+      <div
+        class="btn btn-blue-grey border-0 px-4 text-white shadow-none"
+        (click)="backToMainTable()"
+      >
+        بازگشت
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="d-flex justify-content-center mt-5 mb-5">
+  <div class="spinner-border text-primary mt-5" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

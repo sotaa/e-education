@@ -1,0 +1,96 @@
+input {
+  font-size: 12px;
+}
+
+.formTitle {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.period-p {
+  direction: rtl;
+  text-align: right;
+  & label {
+    font-size: 13px;
+  }
+}
+
+.select {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+.time-p {
+  direction: rtl;
+  text-align: right;
+
+  & label {
+    width: 100%;
+  }
+}
+
+.date-p {
+  direction: rtl;
+  text-align: right;
+
+  & label {
+    width: 100%;
+  }
+}
+
+.name-p {
+  direction: rtl;
+  text-align: right;
+}
+
+.name-m {
+  direction: rtl;
+  text-align: right;
+}
+
+// date picker
+dp-date-picker {
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100%;
+}
+.dp-popup {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+dp-month-calendar {
+  padding: 0px !important;
+  border: none !important;
+}
+dp-day-calendar {
+  padding: 0px !important;
+  border: none !important;
+}
+dp-calendar-nav {
+  border: none !important;
+}
+.dp-calendar-nav-container {
+  border: none !important;
+}
+.dp-input-container > .dp-picker-input {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  display: block;
+  width: 100%;
+  height: 34px !important;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-image: none;
+  border-radius: 4px;
+  -webkit-transition: border-color ease-in-out 0.15s,
+    -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+//
