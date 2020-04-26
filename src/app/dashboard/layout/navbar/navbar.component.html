@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse px-5" id="navbarTogglerDemo01">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <i class="fas fa-home fa-lg"></i>
+      </a>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['add']"
+            ><small>ثبت کلاس جدید</small></a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <a
+              style="font-family: 'Varela Round', sans-serif;"
+              class="text-info"
+              >soheiltad@gmail.com</a
+            >
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right text-right"
+            aria-labelledby="navbarDropdown"
+          >
+            <button class="dropdown-item py-2">پروفایل</button>
+            <button class="dropdown-item py-2">خروج</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
