@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "IRANSans";
+  src: url("assets/fonts/IRANSans.ttf");
+}
+
+* {
+  font-family: "IRANSans";
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
