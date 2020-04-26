@@ -1,0 +1,90 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-lg-6">
+    <div class="card">
+      <p
+        class="card-header h6 info-color white-text text-center py-4 font-weight-bold"
+      >
+        اطلاعات ورود
+      </p>
+      <div class="card-body px-lg-5 pt-0">
+        <form
+          (submit)="submit()"
+          #f="ngForm"
+          class="text-center"
+          style="color: #757575;"
+        >
+          <p
+            *ngIf="errorMessage"
+            style="font-size: 12px;"
+            class="text-danger text-center"
+          >
+            {{ errorMessage }}
+          </p>
+          <div class="md-form">
+            <input
+              type="email"
+              id="materialLoginFormEmail"
+              class="form-control pr-2"
+              required
+              [(ngModel)]="email"
+              name="email"
+              #us
+              placeholder="ایمیل"
+            />
+            <span class="text-danger" *ngIf="us.errors != null && us.touched"
+              >!ایمیل معتبر نیست</span
+            >
+          </div>
+          <div class="md-form">
+            <input
+              type="password"
+              id="materialLoginFormPassword"
+              class="form-control pr-2"
+              required
+              [(ngModel)]="password"
+              name="password"
+              #pswd
+              placeholder="کلمه عبور"
+            />
+            <span
+              class="text-danger"
+              *ngIf="pswd.errors != null && pswd.touched"
+              >!پسوورد معتبر نیست</span
+            >
+          </div>
+
+          <div class="d-flex justify-content-around">
+            <div>
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="materialLoginFormRemember"
+                />
+                <label class="form-check-label" for="materialLoginFormRemember"
+                  >مرابه خاطر بسپار</label
+                >
+              </div>
+            </div>
+            <!-- <div>
+          <a href="">Forgot password?</a>
+        </div> -->
+          </div>
+          <button
+            class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+            type="submit"
+          >
+            {{ isLoading ? "..." : "ورود" }}
+          </button>
+          <p>
+            <a
+              class="teal-text text-decoration-none"
+              [routerLink]="['/auth/register']"
+              >ثبت نام</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
